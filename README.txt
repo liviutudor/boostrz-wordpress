@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Boostrz Tag Manager ===
 
 Contributors: Boostrz Inc
 
@@ -8,11 +8,12 @@ Requires at least: 4.3
 
 Tested up to: 6.6.2
 
-Stable tag: 6.6.2
+Stable tag: 1.0.0
 
-License: Apache License, Version 2.0
+License: GNU General Public License, version 2
 
-License URI: https://www.apache.org/licenses/LICENSE-2.0
+License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
+
 Deploy Boostrz.io tags on your WordPress website.
 == Description ==
 Boostrz.io is a platform designed to help you track and optimize your marketing efforts by providing comprehensive insights into user behavior and conversions.
@@ -35,7 +36,7 @@ Simplify tracking and make data-driven decisions with the Boostrz.io WordPress p
 If you want to install the plugin from the WordPress official repository follow these steps.
 
 1. In your WordPress dashboard, go to **Plugins > Add New**.
-2. Search for _"Boostrz.io Tag Deployment"_ in the search bar.
+2. Search for _"Boostrz.io Tag Manager"_ in the search bar.
 3. Click **Install Now** and then **Activate**.
 4. Configure the Plugin:
 - Once activated, go to **Settings > Boostrz**.
