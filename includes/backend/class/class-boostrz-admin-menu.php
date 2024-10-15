@@ -21,7 +21,8 @@ class Boostrz_Admin_Menu {
             'manage_options',     // Capability
             'boostrz-settings',   // Menu slug
             array( $this, 'display_settings_page' ), // Callback function
-            'dashicons-admin-generic', // Icon
+            // 'dashicons-admin-generic', // Icon
+            "https://boostrz.io/wp-content/uploads/2024/10/svg_logo.svg",
             6                    // Position
         );
     }
