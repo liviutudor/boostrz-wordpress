@@ -16,7 +16,7 @@ $current_website_selected = get_option( 'boostrz_current_website_selected' );
 ?>
 
 <div class="wrap">
-    <h1>Boostrz Website Generate</h1>
+    <h1>Select Website to Generate Tag</h1>
     <form method="post" action="" style="display: flex; align-items: center;">
         <?php wp_nonce_field( 'boostrz_save_settings', 'boostrz_nonce_field' ); ?>
 
@@ -37,6 +37,6 @@ $current_website_selected = get_option( 'boostrz_current_website_selected' );
             }
         ?>
         </select>
-        <input type="submit" name="submit_boostrz_website_tag" id="submit" class="button button-primary" value="Select Website">
+        <input type="submit" name="submit_boostrz_website_tag" id="submit" class="button button-primary" value="Use This Website">
     </form>
 </div>

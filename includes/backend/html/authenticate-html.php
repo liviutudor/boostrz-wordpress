@@ -13,7 +13,9 @@ $current_password = '';
 ?>
 
 <div class="wrap">
-    <h1>Boostrz Settings</h1>
+    <img src="<?php echo BOOSTRZ_PLUGIN_URL . 'img/svg_logo.svg'; ?>" alt="Boostrz Logo" style="margin-bottom: 20px;"/>
+    <h1>Authenticate with Boostrz</h1>
+    <p>Use your Boostrz username and password to authenticate with Boostrz to be able to retrieve the tag for your website</p>
     <form method="post" action="" style="display: flex; align-items: center;">
         <?php wp_nonce_field( 'boostrz_save_settings', 'boostrz_nonce_field' ); ?>
 
