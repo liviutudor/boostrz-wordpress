@@ -5,7 +5,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 global $wpdb;
 $table_name = $wpdb->prefix . BOOSTRZ_TABLE_NAME;
-$website_list = $wpdb->get_results("SELECT * FROM $table_name");
+$current_token = get_option( 'boostrz_api_token' );
+$website_list = $wpdb->get_results( $wpdb->prepare(
+    "SELECT * FROM $table_name WHERE token = %s", 
+    $current_token
+) );
 // Retrieve the current values
 $current_website_selected = get_option( 'boostrz_current_website_selected' );
 

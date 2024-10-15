@@ -35,14 +35,14 @@ class Boostrz_Wordpress {
 
     }
 
-// Function to run on plugin activation
-public function activate() {
-    require_once(BOOSTRZ_PLUGIN_DIR . 'includes/activate.php');
-   }
+    // Function to run on plugin activation
+    public function activate() {
+        require_once(BOOSTRZ_PLUGIN_DIR . 'includes/activate.php');
+    }
     // Function to run on plugin deactive 
     public function deactivate(){
         require_once(BOOSTRZ_PLUGIN_DIR . 'includes/deactivate.php');
-     }
+    }
 }
 
 // Instantiate the plugin class

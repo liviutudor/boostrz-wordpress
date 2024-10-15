@@ -1,6 +1,8 @@
 <?php
 class Boostrz_API_Table {
     public function __construct() {
+        // Call the update function when the plugin is activated
+        $this->update_table();
 
     }
     public static function create_table() {
@@ -26,7 +28,20 @@ class Boostrz_API_Table {
             dbDelta($sql);
         }
     }
-    
 
+
+     // Function to update the table and add new columns
+    public static function update_table() {
+        global $wpdb;
+        $table_name = $wpdb->prefix . BOOSTRZ_TABLE_NAME;
+
+        // Check if the column 'token' exists, if not, add it
+        $column_exists = $wpdb->get_results("SHOW COLUMNS FROM `$table_name` LIKE 'token'");
+
+        if (empty($column_exists)) {
+            $sql = "ALTER TABLE $table_name ADD token longtext DEFAULT NULL;";
+            $wpdb->query($sql); // Execute the query to add the column
+        }
+    }
     
 }

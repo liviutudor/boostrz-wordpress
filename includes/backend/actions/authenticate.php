@@ -25,8 +25,8 @@ if ( isset( $_POST['submit_boostrz_settings'] ) && check_admin_referer( 'boostrz
     }else{
         if($boostrz_api_token['api_data']){
                 // Save the settings in the database
-            update_option( 'boostrz_username', $username );
-            update_option( 'boostrz_password', $password );
+            // update_option( 'boostrz_username', $username );
+            // update_option( 'boostrz_password', $password );
             update_option( 'boostrz_api_token', $boostrz_api_token['api_data']->token );
             update_option( 'boostrz_api_token_expiry', $boostrz_api_token['api_data']->tokenExpiry );
             
@@ -77,6 +77,7 @@ function api_data_store_in_DB($api_data){
         $save_data['api_version'] = $api_data->apiVersion;
         $save_data['website_json'] = json_encode($api_data);
         $save_data['status'] = 'active';
+        $save_data['token'] = get_option('boostrz_api_token');
 
         if($wpdb->get_row(
             $wpdb->prepare("SELECT * FROM $table_name WHERE base_url = %s", $api_data->baseUrl)

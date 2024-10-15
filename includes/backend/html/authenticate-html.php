@@ -5,8 +5,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Retrieve the current values
-$current_username = get_option( 'boostrz_username' );
-$current_password = get_option( 'boostrz_password' );
+//$current_username = get_option( 'boostrz_username' );
+$current_username = '';
+$current_password = '';
+//$current_password = get_option( 'boostrz_password' );
 
 ?>
 

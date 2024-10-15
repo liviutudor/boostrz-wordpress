@@ -1,0 +1,12 @@
+li#toplevel_page_boostrz-settings .wp-menu-image img {
+    width: 31px;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    padding-top: 13px;
+}
+
+li#toplevel_page_boostrz-settings .wp-menu-image.dashicons-before {
+    background: #fff;
+    border-radius: 18px;
+}
