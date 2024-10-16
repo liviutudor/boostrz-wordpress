@@ -68,8 +68,12 @@ After the plugin is uploaded, click the **Activate** button to enable it.
 
 
 == Frequently Asked Questions ==
-= How do I get an account for the Boostrz platform =
+= How do I get an account for the Boostrz platform? =
 You can signup for free on https://boostrz.io and create your account there.
+
+= Does the plugin rely on any 3rd party services? =
+Yes, the plugin will connect to the boostrz.io backend services to obtain a token needed to retrieve the Boostrz tag to embed into your pages. In the **Options** page of the plugin, when prompted for your Boostrz username and password, this plugin will connect to the boostrz.io backend to retrieve such a token. It then uses the token to retrieve and store the script tag which will be embedded in your website.
+Note that apart from the username and password you supply, no other information is passed to the Boostrz backend. Also, the username and password is _NOT_ saved in the WordPress database to avoid security breaches.
 
 == Screenshots ==
 
