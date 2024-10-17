@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
 class Boostrz_API_Table {
     public function __construct() {
         // Call the update function when the plugin is activated

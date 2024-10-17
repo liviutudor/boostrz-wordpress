@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
 
 // Check if form was submitted and save data
 if ( isset( $_POST['submit_boostrz_settings'] ) && check_admin_referer( 'boostrz_save_settings', 'boostrz_nonce_field' ) ) {
@@ -8,6 +11,7 @@ if ( isset( $_POST['submit_boostrz_settings'] ) && check_admin_referer( 'boostrz
     require_once(BOOSTRZ_PLUGIN_DIR . 'endpoints/endpoint-api-token.php');
     require_once(BOOSTRZ_PLUGIN_DIR . 'endpoints/endpoint-api-website-list.php');
 
+
     $username = sanitize_text_field( $_POST['boostrz_username'] );
     $password = sanitize_text_field( $_POST['boostrz_password'] );
 
@@ -15,12 +19,17 @@ if ( isset( $_POST['submit_boostrz_settings'] ) && check_admin_referer( 'boostrz
         echo '<div class="notice notice-error"><p>Please fill in both fields.</p></div>';
         return true;
     }
+    $array_sanitized    =   [];
+    $array_sanitized['boostrz_username']  = isset( $_POST['boostrz_username'] ) ? sanitize_email( $_POST['boostrz_username'] ) : '';
+    $array_sanitized['boostrz_password'] = isset( $_POST['boostrz_password'] ) ?  $_POST['boostrz_password'] : '';
+    
 
-    $boostrz_api_token = new BOOSTRZ_API_TOKEN($_POST);
+
+    $boostrz_api_token = new BOOSTRZ_API_TOKEN($array_sanitized);
     $boostrz_api_token = $boostrz_api_token->token_array_modify(); 
 
     if(isset($boostrz_api_token) && !$boostrz_api_token['success']){
-        echo '<div class="notice notice-error"><p>'.$boostrz_api_token['error_message'].'.</p></div>';
+        echo '<div class="notice notice-error"><p>'.esc_html($boostrz_api_token['error_message']).'.</p></div>';
         return true;
     }else{
         if($boostrz_api_token['api_data']){
@@ -30,7 +39,7 @@ if ( isset( $_POST['submit_boostrz_settings'] ) && check_admin_referer( 'boostrz
             update_option( 'boostrz_api_token', $boostrz_api_token['api_data']->token );
             update_option( 'boostrz_api_token_expiry', $boostrz_api_token['api_data']->tokenExpiry );
             
-            $boostrz_api_website_list = new BOOSTRZ_API_WEBSITE_LIST($_POST);
+            $boostrz_api_website_list = new BOOSTRZ_API_WEBSITE_LIST($array_sanitized);
             $boostrz_api_website_list = $boostrz_api_website_list->website_list_array_modify();
 
             if(isset($boostrz_api_website_list['success'])){

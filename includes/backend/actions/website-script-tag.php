@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
   
 // Check if form was submitted and save data
 if ( isset( $_POST['submit_boostrz_website_tag'] ) ) {
@@ -8,23 +11,26 @@ if ( isset( $_POST['submit_boostrz_website_tag'] ) ) {
     require_once(BOOSTRZ_PLUGIN_DIR . 'endpoints/endpoint-api-website-script-tag.php');
     
 
-    $boostrz_website = sanitize_text_field( $_POST['boostrz_website_list'] );
+    $boostrz_website = isset( $_POST['boostrz_website_list'] ) ? esc_html( $_POST['boostrz_website_list'] ) : '';
+
 
     if (empty($boostrz_website)) {
         echo '<div class="notice notice-error"><p>Please select website fields.</p></div>';
         return true;
     }
+    $array_sanitized    =   [];
+    $array_sanitized['boostrz_website_list']   = isset( $_POST['boostrz_website_list'] ) ? esc_html( $_POST['boostrz_website_list'] ) : '';
 
 
-    $boostrz_website_script_tag = new BOOSTRZ_API_WEBSITE_SCRIPT_TAG($_POST);
+    $boostrz_website_script_tag = new BOOSTRZ_API_WEBSITE_SCRIPT_TAG($array_sanitized);
     $boostrz_website_script_tag = $boostrz_website_script_tag->website_script_array_modify(); 
     if(isset($boostrz_website_script_tag) && !$boostrz_website_script_tag['success']){
-        echo '<div class="notice notice-error"><p>'.$boostrz_website_script_tag['error_message'].'.</p></div>';
+        echo '<div class="notice notice-error"><p>'.esc_html($boostrz_website_script_tag['error_message']).'.</p></div>';
         return true;
     }else{
         //boostrz_current_website_selected
-        update_option( 'boostrz_current_website_selected', $_POST['boostrz_website_list'] );
-        $responsive_data = api_script_data_update_in_DB($boostrz_website_script_tag['api_data'],$_POST);
+        update_option( 'boostrz_current_website_selected', $array_sanitized['boostrz_website_list'] );
+        $responsive_data = api_script_data_update_in_DB($boostrz_website_script_tag['api_data'],$array_sanitized);
         
         echo '<div class="updated"><p>Settings saved successfully!</p></div>';
         return true;

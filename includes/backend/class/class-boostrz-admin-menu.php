@@ -63,7 +63,9 @@ class Boostrz_Admin_Menu {
         ?>
         <script type="text/javascript">
             // Your JavaScript code here
-            <?php echo $script; ?>
+            <?php echo isset($script) ? $script : ''; 
+            
+            ?>
             console.log('This script is added before </body> tag.');
         </script>
         <?php

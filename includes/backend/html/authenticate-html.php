@@ -13,7 +13,7 @@ $current_password = '';
 ?>
 
 <div class="wrap">
-    <img src="<?php echo BOOSTRZ_PLUGIN_URL . 'img/svg_logo.svg'; ?>" alt="Boostrz Logo" style="margin-bottom: 20px;"/>
+    <img src="<?php echo esc_url(BOOSTRZ_PLUGIN_URL . 'img/svg_logo.svg'); ?>" alt="Boostrz Logo" style="margin-bottom: 20px;"/>
     <h1>Authenticate with Boostrz</h1>
     <p>Use your Boostrz username and password to authenticate with Boostrz to be able to retrieve the tag for your website</p>
     <form method="post" action="" style="display: flex; align-items: center;">

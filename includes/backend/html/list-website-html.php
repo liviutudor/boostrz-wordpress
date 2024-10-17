@@ -1,5 +1,4 @@
 <?php
-
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
@@ -29,7 +28,7 @@ $current_website_selected = get_option( 'boostrz_current_website_selected' );
             if(!empty($website_list)){
                 echo '<option value="">Select Website</option>';
                 foreach($website_list as $w_list){
-                    echo '<option value="'.$w_list->base_url.'" '. selected( $current_website_selected, $w_list->base_url ).'>'.$w_list->base_url.'</option>';
+                    echo '<option value="'.esc_html($w_list->base_url).'" '. selected( $current_website_selected, esc_html($w_list->base_url) ).'>'.esc_html($w_list->base_url).'</option>';
                 }
 
             }else{

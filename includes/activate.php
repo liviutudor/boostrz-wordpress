@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
 class Activate {
     public function __construct() {
         require_once(BOOSTRZ_PLUGIN_DIR . 'tables/boostrz-api-table.php');
