@@ -10,9 +10,9 @@ Tested up to: 6.6.2
 
 Stable tag: 1.0.0
 
-License: GNU General Public License, version 2
+License: GNU General Public License (GPL) version 3
 
-License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Deploy Boostrz.io tags on your WordPress website.
 == Description ==

@@ -7,7 +7,7 @@ Version: 1.0.0
 Author: Boostrz Inc
 Author URI: https://boostrz.io
 Text Domain: boostrz-tag-manager
-License: GNU General Public License, version 2
+License: GNU General Public License (GPL) version 3
 Company Name: Boostrz Inc
 */
 // Include menu handler file
