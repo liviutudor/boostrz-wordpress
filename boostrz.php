@@ -25,6 +25,8 @@ define( 'BOOSTRZ_API_URL', 'https://app.boostrz.io' );
 define( 'BOOSTRZ_API_KEY', 'https://app.boostrz.io' );
 define( 'BOOSTRZ_MAIN_DIR', ABSPATH );
 define( 'BOOSTRZ_TABLE_NAME', 'boostrz_api' );
+define( 'BOOSTRZ_CACHE_SET_TIME', 300 );
+
 
 class Boostrz_Wordpress {
     public function __construct() {

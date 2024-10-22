@@ -51,12 +51,27 @@ class Boostrz_Admin_Menu {
         $current_website_selected = get_option( 'boostrz_current_website_selected' );
         if($current_website_selected){
             global $wpdb;
-            $table_name = $wpdb->prefix . BOOSTRZ_TABLE_NAME;
-            $get_website = $wpdb->get_row(
-                $wpdb->prepare("SELECT * FROM $table_name WHERE base_url = %s", $current_website_selected)
-            );
+            $table_name = esc_sql($wpdb->prefix . BOOSTRZ_TABLE_NAME);
+
+            // Create a cache key based on the base URL
+            $script_to_cache_key = 'boostrz_api_update_url_' . md5($current_website_selected);
+            
+            // Try to retrieve the cached result
+            $script_data = wp_cache_get($script_to_cache_key, 'boostrz_cache_api_script_group');
+
+            if ($script_data === false) {
+
+                $get_website = $wpdb->get_row(
+                    $wpdb->prepare("SELECT * FROM $table_name WHERE base_url = %s", $current_website_selected)
+                );
+
+                 // Cache the result for 5 minutes (300 seconds)
+                 wp_cache_set($script_to_cache_key, $get_website, 'boostrz_cache_api_script_group', BOOSTRZ_CACHE_SET_TIME);
+            }
 
             $script =  json_decode($get_website->script_tag);
+            
+           
         }
 
 

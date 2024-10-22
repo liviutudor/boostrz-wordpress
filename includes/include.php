@@ -15,7 +15,7 @@ class Boostrz_Includes {
 
 
     // Hook into admin_enqueue_scripts to add the custom admin style
-    function boostrz_add_admin_styles() {
+    public function boostrz_add_admin_styles() {
         // Path to your CSS file
         wp_register_style( 'boostrz-admin-style', BOOSTRZ_PLUGIN_URL . 'assets/css/admin-style.css', [], '1.0.0' );
 		wp_enqueue_style( 'boostrz-admin-style' );

@@ -33,7 +33,7 @@ class ENDPOINT_API {
         $url = $this->api_url.'/'.$this->endpoint;
         $response = wp_remote_post($url, array(
             'headers' => $this->headers,
-            'body' => json_encode($body),
+            'body' => wp_json_encode($body),
             'timeout' => 30,
         ));
         // Check for errors
@@ -106,7 +106,7 @@ class ENDPOINT_API {
             // Get the response body
             return array(
                 'success' => true,
-                'data' => json_encode(wp_remote_retrieve_body($response))
+                'data' => wp_json_encode(wp_remote_retrieve_body($response))
             );
         }
     }
