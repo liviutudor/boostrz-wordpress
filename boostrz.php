@@ -23,7 +23,7 @@ define( 'BOOSTRZ_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BOOSTRZ_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'BOOSTRZ_API_URL', 'https://app.boostrz.io' );
 define( 'BOOSTRZ_API_KEY', 'https://app.boostrz.io' );
-define( 'BOOSTRZ_MAIN_DIR', ABSPATH );
+define( 'BOOSTRZ_MAIN_DIR', plugin_dir_path(__FILE__) );
 define( 'BOOSTRZ_TABLE_NAME', 'boostrz_api' );
 define( 'BOOSTRZ_CACHE_SET_TIME', 300 );
 
