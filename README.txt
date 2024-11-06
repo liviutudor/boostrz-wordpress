@@ -1,6 +1,6 @@
 === Boostrz Tag Manager ===
 
-Contributors: Boostrz Inc
+Contributors: boostrz
 
 Tags: referral marketing, user acquisition, marketing, boostrz
 
@@ -65,7 +65,10 @@ After the plugin is uploaded, click the **Activate** button to enable it.
 - Select the one you want to add the tags for to the current WordPress website and click **Use This Website**
 - This will generate the tag and place it from there on on every page and post on your website.
 
-
+== External services ==
+This plugin will connect to the boostrz.io backend services (app.boostrz.io) to obtain a token needed to retrieve the Boostrz tag to embed into your pages. In the **Options** page of the plugin, when prompted for your Boostrz username and password, this plugin will connect to the boostrz.io backend to retrieve such a token. It then uses the token to retrieve and store the script tag which will be embedded in your website.
+Note that apart from the username and password you supply, no other information is passed to the Boostrz backend. Also, the username and password is _NOT_ saved in the WordPress database to avoid security breaches.
+This service is provided by Boostrz: [terms of use](https://boostrz.io/terms-of-use/), [privacy policy](https://boostrz.io/privacy-policy/).
 
 == Frequently Asked Questions ==
 = How do I get an account for the Boostrz platform? =
