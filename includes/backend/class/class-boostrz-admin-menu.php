@@ -61,15 +61,15 @@ class Boostrz_Admin_Menu {
 
             if ($script_data === false) {
 
-                $get_website = $wpdb->get_row(
+                $script_data = $wpdb->get_row(
                     $wpdb->prepare("SELECT * FROM $table_name WHERE base_url = %s", $current_website_selected)
                 );
 
                  // Cache the result for 5 minutes (300 seconds)
-                 wp_cache_set($script_to_cache_key, $get_website, 'boostrz_cache_api_script_group', BOOSTRZ_CACHE_SET_TIME);
+                 wp_cache_set($script_to_cache_key, $script_data, 'boostrz_cache_api_script_group', BOOSTRZ_CACHE_SET_TIME);
             }
 
-            $script =  json_decode($get_website->script_tag);
+            $script =  json_decode($script_data->script_tag);
             
            
         }
