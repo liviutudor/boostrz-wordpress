@@ -16,10 +16,10 @@ class BOOSTRZ_API_WEBSITE_SCRIPT_TAG extends ENDPOINT_API {
         // Check if the result is already cached
         $website_list_cache = wp_cache_get($cache_key, 'boostrz_cache_script_tag_group');
         if ($website_list_cache === false) {
-
-            $website_list = $wpdb->get_row(
-                $wpdb->prepare(
-                    "SELECT * FROM $table_name WHERE base_url = %s", 
+            $custom_wpdb = $wpdb;
+            $website_list = $custom_wpdb->get_row(
+                $custom_wpdb->prepare(
+                    "SELECT * FROM {$table_name} WHERE base_url = %s", 
                     $boostrz_website_list
                 )
             );

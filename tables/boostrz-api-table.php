@@ -20,8 +20,10 @@ class Boostrz_API_Table {
 
 
         if($table_exists === false){
+            $custom_wpdb = $wpdb;
+            $table_name_list = $custom_wpdb->get_var($custom_wpdb->prepare("SHOW TABLES LIKE %s", $table_name));
 
-            if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") !== $table_name) {
+            if( $table_name_list !== $table_name) {
             
                 $sql = "CREATE TABLE $table_name (
                     id bigint(20) NOT NULL AUTO_INCREMENT,

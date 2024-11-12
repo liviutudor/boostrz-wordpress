@@ -10,7 +10,7 @@ class BOOSTRZ_API_TOKEN extends ENDPOINT_API {
         $this->endpoint_type = 'token';
         $this->body['username'] = isset($array['boostrz_username']) ? $array['boostrz_username'] : '';
         $this->body['password'] = isset($array['boostrz_password']) ? $array['boostrz_password'] : '';
-        $this->body['pluginId'] = "boostrz-wordpress";
+        $this->body['pluginId'] = "boostrz-tag-manager";
         $this->body['version']  = "1.0.0";
 
     }

@@ -2,14 +2,14 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
-class Activate {
+class BoostrzActivate {
     public function __construct() {
         require_once(BOOSTRZ_PLUGIN_DIR . 'tables/boostrz-api-table.php');
         
-        $this->activate();
+        $this->boostrz_activate();
     }
 
-    public function activate(){
+    public function boostrz_activate(){
         
         if ( ! get_option( 'boostrz_option' ) ) {
             add_option( 'boostrz_option', 'default_value' );
@@ -26,4 +26,4 @@ class Activate {
 }
 
 // Instantiate the plugin class
-$activate = new Activate();
+$activate = new BoostrzActivate();

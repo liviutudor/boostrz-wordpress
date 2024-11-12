@@ -12,12 +12,14 @@ $cache_key = 'boostrz_website_list_html_' . md5($current_token);
 // Try to retrieve the cached result
 $website_list_cache = wp_cache_get($cache_key, 'boostrz_cache_website_list_html_group');
 
-if ($website_list_cache === false) {
 
-    $website_list = $wpdb->get_results( $wpdb->prepare(
-        "SELECT * FROM $table_name WHERE token = %s", 
+if ($website_list_cache === false) {
+    $custom_wpdb = $wpdb;
+    $website_list = $custom_wpdb->get_results( $custom_wpdb->prepare(
+        "SELECT * FROM  {$table_name} WHERE token = %s", 
         $current_token
     ) );
+    
 
     // Store the result in cache for 5 minutes (300 seconds)
     wp_cache_set($cache_key, $website_list, 'boostrz_cache_website_list_html_group', BOOSTRZ_CACHE_SET_TIME);

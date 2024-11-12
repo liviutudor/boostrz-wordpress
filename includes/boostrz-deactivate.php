@@ -2,12 +2,12 @@
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
-class Deactivate {
+class BoostrzDeactivate {
     public function __construct() {
-        $this->deactivate();
+        $this->boostrz_deactivate();
     }
 
-    public function deactivate(){
+    public function boostrz_deactivate(){
 
         // delete_option( 'boostrz_option' );
         // delete_option( 'boostrz_username' );
@@ -21,4 +21,4 @@ class Deactivate {
 }
 
 // Instantiate the plugin class
-$deactivate = new Deactivate();
+$deactivate = new BoostrzDeactivate();

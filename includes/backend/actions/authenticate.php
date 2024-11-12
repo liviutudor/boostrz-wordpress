@@ -3,6 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
+
 // Check if form was submitted and save data
 if ( isset( $_POST['submit_boostrz_settings'] ) && check_admin_referer( 'boostrz_save_settings', 'boostrz_nonce_field' ) ) {
     // api 
@@ -13,7 +14,7 @@ if ( isset( $_POST['submit_boostrz_settings'] ) && check_admin_referer( 'boostrz
 
 
     $username = isset($_POST['boostrz_username']) ? sanitize_email( wp_unslash($_POST['boostrz_username']) ) : '';
-    $password = isset($_POST['boostrz_password']) ?  wp_unslash($_POST['boostrz_password'])  : '';
+    $password = isset($_POST['boostrz_password']) ?  sanitize_text_field(wp_unslash($_POST['boostrz_password']))  : '';
 
     if (empty($username) || empty($password)) {
         echo '<div class="notice notice-error"><p>Please fill in both fields.</p></div>';
@@ -21,7 +22,7 @@ if ( isset( $_POST['submit_boostrz_settings'] ) && check_admin_referer( 'boostrz
     }
     $array_sanitized    =   [];
     $array_sanitized['boostrz_username']  = isset( $_POST['boostrz_username'] ) ? sanitize_email( wp_unslash($_POST['boostrz_username']) ) : '';
-    $array_sanitized['boostrz_password'] = isset( $_POST['boostrz_password'] ) ?  wp_unslash($_POST['boostrz_password']) : '';
+    $array_sanitized['boostrz_password'] = isset( $_POST['boostrz_password'] ) ?  sanitize_text_field(wp_unslash($_POST['boostrz_password'])) : '';
     
 
 
@@ -94,16 +95,16 @@ function api_data_store_in_DB($api_data){
          // Try to retrieve the cached result
          $existing_data = wp_cache_get($cache_key, 'boostrz_cache_api_data_store_group');
         if ($existing_data === false) {
+            $custom_wpdb = $wpdb;
+            $get_record = $custom_wpdb->get_row($custom_wpdb->prepare("SELECT * FROM {$table_name} WHERE base_url = %s", $api_data->baseUrl));
 
-            if($wpdb->get_row(
-                $wpdb->prepare("SELECT * FROM $table_name WHERE base_url = %s", $api_data->baseUrl)
-            )){
+            if($get_record){
                 $where = array('base_url' => $api_data->baseUrl);
     
-                $inserted = $wpdb->update($table_name, $save_data, $where);
+                $inserted = $custom_wpdb->update($table_name, $save_data, $where);
     
             }else{
-                $inserted = $wpdb->insert($table_name, $save_data);
+                $inserted = $custom_wpdb->insert($table_name, $save_data);
             }
 
             // Cache the result for 5 minutes (300 seconds)
@@ -134,10 +135,10 @@ function api_data_store_in_DB($api_data){
             // Try to retrieve the cached result
             $last_insert_existing_data = wp_cache_get($last_insert_cache_key, 'boostrz_cache_api_last_insert_id_group');
             if ($last_insert_existing_data === false) {
-
+                $custom_wpdb = $wpdb;
                 // Fetch the inserted row
-                $inserted_data = $wpdb->get_row(
-                    $wpdb->prepare("SELECT * FROM $table_name WHERE id = %d", $last_insert_id)
+                $inserted_data = $custom_wpdb->get_row(
+                    $custom_wpdb->prepare("SELECT * FROM {$table_name} WHERE id = %d", $last_insert_id)
                 );
 
                 // Cache the result for 5 minutes (300 seconds)

@@ -53,7 +53,7 @@ This section describes how to install the plugin manually and get it working.
 2. Upload to WordPress:
 - In your WordPress dashboard, go to **Plugins > Add New**.
 - Click the **Upload Plugin** button at the top of the screen.
-- Choose the `boostrz-wordpress.zip` file you downloaded and click **Install Now**.
+- Choose the `boostrz-tag-manager.zip` file you downloaded and click **Install Now**.
 
 3. Activate the Plugin:
 After the plugin is uploaded, click the **Activate** button to enable it.

@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( isset( $_POST['submit_boostrz_website_tag'] ) ) {
  
     // Verify the nonce
-    if ( ! isset( $_POST['boostrz_website_nonce_field'] ) || ! wp_verify_nonce( $_POST['boostrz_website_nonce_field'], 'boostrz_website_tag_settings' ) ) {
+    if ( ! isset( $_POST['boostrz_website_nonce_field'] ) || ! wp_verify_nonce( sanitize_text_field(wp_unslash($_POST['boostrz_website_nonce_field'])), 'boostrz_website_tag_settings' ) ) {
         // Nonce verification failed
         echo '<div class="notice notice-error"><p>Nonce verification failed.</p></div>';
         return true;
@@ -19,7 +19,7 @@ if ( isset( $_POST['submit_boostrz_website_tag'] ) ) {
     require_once(BOOSTRZ_PLUGIN_DIR . 'endpoints/endpoint-api-website-script-tag.php');
     
 
-    $boostrz_website = isset( $_POST['boostrz_website_list'] ) ? esc_html( wp_unslash($_POST['boostrz_website_list']) ) : '';
+    $boostrz_website = isset( $_POST['boostrz_website_list'] ) ? sanitize_text_field( wp_unslash($_POST['boostrz_website_list']) ) : '';
 
 
     if (empty($boostrz_website)) {
@@ -27,7 +27,7 @@ if ( isset( $_POST['submit_boostrz_website_tag'] ) ) {
         return true;
     }
     $array_sanitized    =   [];
-    $array_sanitized['boostrz_website_list']   = isset( $_POST['boostrz_website_list'] ) ? esc_html( wp_unslash($_POST['boostrz_website_list']) ) : '';
+    $array_sanitized['boostrz_website_list']   = isset( $_POST['boostrz_website_list'] ) ? sanitize_text_field( wp_unslash($_POST['boostrz_website_list']) ) : '';
 
 
     $boostrz_website_script_tag = new BOOSTRZ_API_WEBSITE_SCRIPT_TAG($array_sanitized);
@@ -73,8 +73,8 @@ function api_script_data_update_in_DB($api_data,$array){
         // Try to retrieve the cached result
         $update_data = wp_cache_get($update_cache_key, 'boostrz_cache_api_update_group');
         if ($update_data === false) {
-
-            $updted = $wpdb->update($table_name, $save_data, $where);
+            $custom_wpdb = $wpdb;
+            $updted = $custom_wpdb->update($table_name, $save_data, $where);
 
             // Cache the result for 5 minutes (300 seconds)
             wp_cache_set($update_cache_key, $updted, 'boostrz_cache_api_update_group', BOOSTRZ_CACHE_SET_TIME);
@@ -98,10 +98,10 @@ function api_script_data_update_in_DB($api_data,$array){
             $update_existing_data = wp_cache_get($update_data_cache_key, 'boostrz_cache_api_update_data_group');
             
             if ($update_existing_data === false) {
-
+                $custom_wpdb = $wpdb;
                  // Fetch the inserted row
-                $inserted_data = $wpdb->get_row(
-                    $wpdb->prepare("SELECT * FROM $table_name WHERE base_url = %s", $boostrz_website_url)
+                $inserted_data = $custom_wpdb->get_row(
+                    $custom_wpdb->prepare("SELECT * FROM {$table_name} WHERE base_url = %s", $boostrz_website_url)
                 );
 
                 // Cache the result for 5 minutes (300 seconds)

@@ -60,9 +60,9 @@ class Boostrz_Admin_Menu {
             $script_data = wp_cache_get($script_to_cache_key, 'boostrz_cache_api_script_group');
 
             if ($script_data === false) {
-
-                $script_data = $wpdb->get_row(
-                    $wpdb->prepare("SELECT * FROM $table_name WHERE base_url = %s", $current_website_selected)
+                $custom_wpdb = $wpdb;
+                $script_data = $custom_wpdb->get_row(
+                    $custom_wpdb->prepare("SELECT * FROM {$table_name} WHERE base_url = %s", $current_website_selected)
                 );
 
                  // Cache the result for 5 minutes (300 seconds)
@@ -73,18 +73,20 @@ class Boostrz_Admin_Menu {
             
            
         }
-
+     
 
         ?>
         <script type="text/javascript">
             // Your JavaScript code here
-            <?php echo isset($script) ? $script : ''; 
+            <?php 
+            echo isset($script) ? $script : ''; 
             
             ?>
             console.log('This script is added before </body> tag.');
         </script>
         <?php
     }
+    
     
 }
 
