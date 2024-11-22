@@ -6,7 +6,7 @@ Tags: referral marketing, user acquisition, marketing, boostrz
 
 Requires at least: 4.3
 
-Tested up to: 6.6.2
+Tested up to: 6.7
 
 Stable tag: 1.0.0
 

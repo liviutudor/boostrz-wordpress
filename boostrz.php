@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Boostrz Tag Manager 
-Plugin URI: https://boostrz.io/boostrz-tag-manager/
+Plugin URI: https://boostrz.io/boostrz-wordpress-plugin/
 Description: This plugin allows you to easily deploy the Boostrz.io tracking tag on any WordPress website, enabling real-time tracking of user activity, conversions, and campaign performance.
 Version: 1.0.0
 Author: Boostrz Inc
