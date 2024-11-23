@@ -6,9 +6,9 @@ Tags: referral marketing, user acquisition, marketing, boostrz
 
 Requires at least: 4.3
 
-Tested up to: 6.7
+Tested up to: 6.7.1
 
-Stable tag: 1.0.0
+Stable tag: 1.0.4
 
 License: GNU General Public License (GPL) version 3
 
@@ -79,7 +79,9 @@ Yes, the plugin will connect to the boostrz.io backend services to obtain a toke
 Note that apart from the username and password you supply, no other information is passed to the Boostrz backend. Also, the username and password is _NOT_ saved in the WordPress database to avoid security breaches.
 
 == Screenshots ==
-
+1. Menu item of the Boostrz WordPress plugin. ![Screenshot](img/screenshot-1.png)
+2. Main screen of the Boostrz WordPress plugin. ![Screenshot](img/screenshot-2.png)
+3. Boostrz tag running on a website as a result of the plugin configuration. ![Screenshot](img/screenshot-3.png)
 
 == Changelog ==
 = v1.0.0 =
