@@ -1,5 +1,5 @@
 <?php
-class BOOSTRZ_API_WEBSITE_SCRIPT_TAG extends ENDPOINT_API {
+class BoostrzApiWebsiteScriptTag extends BoostrzEndpointApi {
 
     protected $endpoint;
     protected $endpoint_type;

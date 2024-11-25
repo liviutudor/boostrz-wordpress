@@ -26,7 +26,7 @@ if ( isset( $_POST['submit_boostrz_settings'] ) && check_admin_referer( 'boostrz
     
 
 
-    $boostrz_api_token = new BOOSTRZ_API_TOKEN($array_sanitized);
+    $boostrz_api_token = new BoostrzApiToken($array_sanitized);
     $boostrz_api_token = $boostrz_api_token->token_array_modify(); 
 
     if(isset($boostrz_api_token) && !$boostrz_api_token['success']){
@@ -40,7 +40,7 @@ if ( isset( $_POST['submit_boostrz_settings'] ) && check_admin_referer( 'boostrz
             update_option( 'boostrz_api_token', $boostrz_api_token['api_data']->token );
             update_option( 'boostrz_api_token_expiry', $boostrz_api_token['api_data']->tokenExpiry );
             
-            $boostrz_api_website_list = new BOOSTRZ_API_WEBSITE_LIST($array_sanitized);
+            $boostrz_api_website_list = new BoostrzApiWebsiteList($array_sanitized);
             $boostrz_api_website_list = $boostrz_api_website_list->website_list_array_modify();
 
             if(isset($boostrz_api_website_list['success'])){
@@ -50,7 +50,7 @@ if ( isset( $_POST['submit_boostrz_settings'] ) && check_admin_referer( 'boostrz
 
                     foreach($website_api_data as $w_api_data){
                         
-                        $responsive_data = api_data_store_in_DB($w_api_data);
+                        $responsive_data = boostrzApiDataStoreInDB($w_api_data);
 
                     }
 
@@ -73,7 +73,7 @@ if ( isset( $_POST['submit_boostrz_settings'] ) && check_admin_referer( 'boostrz
     
 }
 
-function api_data_store_in_DB($api_data){
+function boostrzApiDataStoreInDB($api_data){
 
     global $wpdb;
     $table_name = esc_sql($wpdb->prefix . BOOSTRZ_TABLE_NAME);

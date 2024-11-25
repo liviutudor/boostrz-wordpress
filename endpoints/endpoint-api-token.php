@@ -1,5 +1,5 @@
 <?php
-class BOOSTRZ_API_TOKEN extends ENDPOINT_API {
+class BoostrzApiToken extends BoostrzEndpointApi {
 
     protected $endpoint_type;
     protected $endpoint;

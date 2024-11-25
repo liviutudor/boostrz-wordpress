@@ -1,5 +1,5 @@
 <?php
-class BOOSTRZ_API_WEBSITE_LIST extends ENDPOINT_API {
+class BoostrzApiWebsiteList extends BoostrzEndpointApi {
 
     protected $endpoint;
     protected $endpoint_type;

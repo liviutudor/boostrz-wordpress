@@ -1,5 +1,5 @@
 <?php
-class ENDPOINT_API {
+class BoostrzEndpointApi {
     private $api_key;
     private $headers;
     private $api_url;

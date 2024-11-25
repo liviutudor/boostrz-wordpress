@@ -75,14 +75,14 @@ class Boostrz_Admin_Menu
                 wp_cache_set($script_to_cache_key, $script_data, 'boostrz_cache_api_script_group', BOOSTRZ_CACHE_SET_TIME);
             }
 
-            $script = json_decode($script_data->script_tag);
+            $script_safe = json_decode($script_data->script_tag);
         }
         ?>
         <script type="text/javascript">
             // Your JavaScript code here
             <?php
-            if (isset($script)) {
-                echo $script;
+            if (isset($script_safe)) {
+                echo $script_safe;
             } else {
                 echo "console.log('Script is not set');";
             }

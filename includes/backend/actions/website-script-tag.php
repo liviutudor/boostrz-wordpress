@@ -30,7 +30,7 @@ if ( isset( $_POST['submit_boostrz_website_tag'] ) ) {
     $array_sanitized['boostrz_website_list']   = isset( $_POST['boostrz_website_list'] ) ? sanitize_text_field( wp_unslash($_POST['boostrz_website_list']) ) : '';
 
 
-    $boostrz_website_script_tag = new BOOSTRZ_API_WEBSITE_SCRIPT_TAG($array_sanitized);
+    $boostrz_website_script_tag = new BoostrzApiWebsiteScriptTag($array_sanitized);
     $boostrz_website_script_tag = $boostrz_website_script_tag->website_script_array_modify(); 
     if(isset($boostrz_website_script_tag) && !$boostrz_website_script_tag['success']){
         echo '<div class="notice notice-error"><p>'.esc_html($boostrz_website_script_tag['error_message']).'.</p></div>';
@@ -38,7 +38,7 @@ if ( isset( $_POST['submit_boostrz_website_tag'] ) ) {
     }else{
         //boostrz_current_website_selected
         update_option( 'boostrz_current_website_selected', $array_sanitized['boostrz_website_list'] );
-        $responsive_data = api_script_data_update_in_DB($boostrz_website_script_tag['api_data'],$array_sanitized);
+        $responsive_data = boostrzApiScriptDataUpdateInDB($boostrz_website_script_tag['api_data'],$array_sanitized);
         
         echo '<div class="updated"><p>Settings saved successfully!</p></div>';
         return true;
@@ -52,7 +52,7 @@ if ( isset( $_POST['submit_boostrz_website_tag'] ) ) {
     
 }
 
-function api_script_data_update_in_DB($api_data,$array){
+function boostrzApiScriptDataUpdateInDB($api_data,$array){
 
     global $wpdb;
     $table_name = esc_sql($wpdb->prefix . BOOSTRZ_TABLE_NAME);
