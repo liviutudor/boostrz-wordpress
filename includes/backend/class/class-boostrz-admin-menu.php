@@ -12,7 +12,7 @@ class Boostrz_Admin_Menu
         add_action('admin_menu', array($this, 'add_admin_menu'));
 
 
-        add_action('wp_footer', array($this, 'add_custom_script_to_footer'), 999);
+        add_action('wp_enqueue_scripts', array($this, 'add_custom_script_to_footer'), 999);
     }
 
     // Function to add the admin menu
@@ -55,7 +55,6 @@ class Boostrz_Admin_Menu
     {
         $current_website_selected = get_option('boostrz_current_website_selected');
         if ($current_website_selected) {
-
             global $wpdb;
             $table_name = esc_sql($wpdb->prefix . BOOSTRZ_TABLE_NAME);
 
@@ -75,20 +74,16 @@ class Boostrz_Admin_Menu
                 wp_cache_set($script_to_cache_key, $script_data, 'boostrz_cache_api_script_group', BOOSTRZ_CACHE_SET_TIME);
             }
 
+            echo "<!-- ". esc_js($script_data) ."-->";
             $script_safe = json_decode($script_data->script_tag);
         }
-        ?>
-        <script type="text/javascript">
-            // Your JavaScript code here
-            <?php
-            if (isset($script_safe)) {
-                echo $script_safe;
-            } else {
-                echo "console.log('Script is not set');";
-            }
-            ?>
-        </script>
-        <?php
+
+        if (isset($script_safe)) {
+            wp_enqueue_script('boostrz-script', '//boostrz.io/boostrz-script');
+            wp_add_inline_script('boostrz-script', $script_safe);
+        } else {
+            error_log( "Boostrz script not set.");
+        }
     }
 }
 
