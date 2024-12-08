@@ -34,6 +34,7 @@ jobs:
 
     - name: WordPress SVN Copy
       run: |
+        cd /tmp/boostrz-tag-manager/trunk/
         svn add *
         svn commit -m "Update from GitHub Actions" --username ${{ secrets.WP_SVN_USERNAME }} --password ${{ secrets.WP_SVN_PASSWORD }}
 
