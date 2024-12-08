@@ -13,6 +13,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        path: github_copy
 
     - name: Install SVN ( Subversion )
       run: |
@@ -22,7 +24,13 @@ jobs:
     - name: Checkout WordPress Plugin SVN
       run: |
         svn co http://plugins.svn.wordpress.org/boostrz-tag-manager/ /tmp/boostrz-tag-manager
-        cp -r /github/workspace/* /tmp/boostrz-tag-manager/
+        cp -r $GITHUB_WORKSPACE/github_copy/* /tmp/boostrz-tag-manager/
+        rm -rf /tmp/boostrz-tag-manager/.github
+        rm -rf /tmp/boostrz-tag-manager/.git
+        rm -rf /tmp/boostrz-tag-manager/.gitignore
+        rm -rf /tmp/boostrz-tag-manager/.gitattributes
+        rm -rf /tmp/boostrz-tag-manager/.editorconfig
+        rm -rf /tmp/boostrz-tag-manager/.vscode
 
     - name: WordPress SVN Copy
       run: |
