@@ -74,7 +74,6 @@ class Boostrz_Admin_Menu
                 wp_cache_set($script_to_cache_key, $script_data, 'boostrz_cache_api_script_group', BOOSTRZ_CACHE_SET_TIME);
             }
 
-            echo "<!-- ". esc_js($script_data) ."-->";
             $script_safe = json_decode($script_data->script_tag);
         }
 
