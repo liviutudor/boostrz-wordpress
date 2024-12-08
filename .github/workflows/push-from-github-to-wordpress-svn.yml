@@ -24,13 +24,13 @@ jobs:
     - name: Checkout WordPress Plugin SVN
       run: |
         svn co http://plugins.svn.wordpress.org/boostrz-tag-manager/ /tmp/boostrz-tag-manager
-        cp -r $GITHUB_WORKSPACE/github_copy/* /tmp/boostrz-tag-manager/
-        rm -rf /tmp/boostrz-tag-manager/.github
-        rm -rf /tmp/boostrz-tag-manager/.git
-        rm -rf /tmp/boostrz-tag-manager/.gitignore
-        rm -rf /tmp/boostrz-tag-manager/.gitattributes
-        rm -rf /tmp/boostrz-tag-manager/.editorconfig
-        rm -rf /tmp/boostrz-tag-manager/.vscode
+        cp -r $GITHUB_WORKSPACE/github_copy/* /tmp/boostrz-tag-manager/trunk/
+        rm -rf /tmp/boostrz-tag-manager/trunk/.github
+        rm -rf /tmp/boostrz-tag-manager/trunk/.git
+        rm -rf /tmp/boostrz-tag-manager/trunk/.gitignore
+        rm -rf /tmp/boostrz-tag-manager/trunk/.gitattributes
+        rm -rf /tmp/boostrz-tag-manager/trunk/.editorconfig
+        rm -rf /tmp/boostrz-tag-manager/trunk/.vscode
 
     - name: WordPress SVN Copy
       run: |
