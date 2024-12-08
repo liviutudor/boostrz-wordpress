@@ -35,8 +35,8 @@ jobs:
     - name: WordPress SVN Copy
       run: |
         cd /tmp/boostrz-tag-manager/trunk/
-        svn add *
         if svn status | grep -q '^[ACDMR?!]'; then
+            svn add --force .
             svn commit -m "Update from GitHub Actions" --username ${{ secrets.WP_SVN_USERNAME }} --password ${{ secrets.WP_SVN_PASSWORD }}
         else
             echo "No changes detected"
