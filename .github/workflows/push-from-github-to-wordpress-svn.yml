@@ -1,0 +1,32 @@
+name: Copy code to WordPress.org Repository
+
+on:
+    push:
+        branches: [ main ]
+    workflow_dispatch:
+      
+jobs:
+  copy_to_wp_repository:
+    name: Copy to WP.org
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install SVN ( Subversion )
+      run: |
+        sudo apt-get update
+        sudo apt-get install subversion
+
+    - name: Checkout WordPress Plugin SVN
+      run: |
+        svn co http://plugins.svn.wordpress.org/boostrz-tag-manager/ /tmp/boostrz-tag-manager
+        cp -r /github/workspace/* /tmp/boostrz-tag-manager/
+
+    - name: WordPress SVN Copy
+      run: |
+        svn add *
+        svn commit -m "Update from GitHub Actions" --username ${{ secrets.WP_SVN_USERNAME }} --password ${{ secrets.WP_SVN_PASSWORD }}
+
+
