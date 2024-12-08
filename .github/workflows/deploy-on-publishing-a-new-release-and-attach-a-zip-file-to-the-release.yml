@@ -51,6 +51,7 @@ jobs:
       env:
         SVN_USERNAME: ${{ secrets.WP_SVN_USERNAME }}
         SVN_PASSWORD: ${{ secrets.WP_SVN_PASSWORD }}
+        PLUGIN_SLUG: boostrz-tag-manager
 
     # After the deploy, we also want to create a zip and upload it to the release on Github. We don't want
     # users to have to go to the repository to find our plugin :).
