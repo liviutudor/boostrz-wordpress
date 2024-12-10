@@ -1,0 +1,49 @@
+name: Tag WordPress SVN on Release
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  tag-svn:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v3
+
+    - name: Extract version number
+      id: extract_version
+      run: |
+        # Extract the version number without the "v" prefix
+        SVN_VERSION=${GITHUB_REF#refs/tags/v}
+        echo "SVN_VERSION=${SVN_VERSION}" >> $GITHUB_ENV
+        echo "Version extracted: $SVN_VERSION"
+
+    - name: Check out SVN repository
+      run: |
+        # Set SVN URL and credentials
+        SVN_URL="http://plugins.svn.wordpress.org/boostrz-tag-manager/"
+        SVN_USERNAME="${{ secrets.WP_SVN_USERNAME }}"
+        SVN_PASSWORD="${{ secrets.WP_SVN_PASSWORD }}"
+        
+        # Get latest trunk version
+        svn checkout --username "$SVN_USERNAME" --password "$SVN_PASSWORD" --non-interactive "$SVN_URL/trunk" trunk
+
+    - name: Create SVN tag
+      run: |
+        # Set SVN URL and credentials
+        SVN_URL="http://plugins.svn.wordpress.org/boostrz-tag-manager/"
+        SVN_USERNAME="${{ secrets.WP_SVN_USERNAME }}"
+        SVN_PASSWORD="${{ secrets.WP_SVN_PASSWORD }}"
+
+        # Tagging the new release in SVN
+        svn copy --username "$SVN_USERNAME" --password "$SVN_PASSWORD" --non-interactive \
+          "$SVN_URL/trunk" \
+          "$SVN_URL/tags/$SVN_VERSION" \
+          -m "Tagging version $SVN_VERSION from trunk"
+
+    - name: Clean up
+      run: |
+        rm -rf trunk
