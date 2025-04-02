@@ -21,8 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Define a constant for the plugin directory
 define( 'BOOSTRZ_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BOOSTRZ_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'BOOSTRZ_API_URL', 'https://app.boostrz.io' );
-define( 'BOOSTRZ_API_KEY', 'https://app.boostrz.io' );
+define( 'BOOSTRZ_API_URL', 'https://app.boostrz.com' );
+define( 'BOOSTRZ_API_KEY', 'https://app.boostrz.com' );
 define( 'BOOSTRZ_TABLE_NAME', 'boostrz_api' );
 // time in second to cache the tag - 6 hours
 define( 'BOOSTRZ_CACHE_SET_TIME', 21600 );
